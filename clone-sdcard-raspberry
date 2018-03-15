@@ -1,0 +1,21 @@
+# Clonar sdcard para .img
+#
+# 1º Liste o cartão sd
+sudo fdisk -l
+
+# 2º Copiar para o hd
+sudo dd if=/dev/sdb of=~/raspbian_backup.img
+
+# Clonar imagem para sdcard
+#
+# 1º Liste as partições do seu cartão sd
+# ex: sudo mount | grep "sd_card"
+sudo mount | grep sdb
+
+# 2º Desmonte as partições
+# ex: sudo umount /dev/sdb1 /dev/sdb2 /dev/sdb3 /dev/sdb4
+sudo umount /dev/sdb1 /dev/sdb2
+
+# 3º Exporte o conteúdo para o sdcard
+sudo dd if=~/raspbian_backup.img of=/dev/sdb
+
